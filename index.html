@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+<div class="container">
+    <nav>
+        <div class="nav-wrapper">
+            <form>
+                <div class="input-field">
+                    <input id="search" type="search" required placeholder="Buscar usuario" onkeyup="buscar()">
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <div id="resultados">
+
+    </div>
+    <div class="preloader-wrapper big active" id="loader">
+        <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+
+    persons = [
+        {
+            nombre: "Andres",
+            apellido: "Jaramillo",
+            correo: "andres@gmail.com",
+            password: "password",
+        },
+        {
+            nombre: "Andres",
+            apellido: "Galindo",
+            correo: "andres2@gmail.com",
+            password: "password",
+        },
+        {
+            nombre: "Carlos",
+            apellido: "Mario",
+            correo: "carlos2@gmail.com",
+            password: "password",
+        },
+        {
+            nombre: "Carlos",
+            apellido: "Castaño",
+            correo: "carlos@gmail.com",
+            password: "password",
+
+        }
+    ]
+
+
+    function buscar() {
+        valor = document.getElementById('search');
+        console.log(valor.value)
+        let filtro = persons.filter(function (person) {
+            return person.nombre == valor.value;
+        })
+        console.log(filtro);
+        resultados = document.getElementById('resultados');
+
+
+        filtro.forEach(function (person) {
+            let card = document.createElement('div');
+            card.classList.add('card');
+            resultados.appendChild(card);
+
+            // card body
+            let card_body = document.createElement('div');
+            card_body.classList.add('card-content');
+            card.appendChild(card_body)
+
+            // h2
+            let p = document.createElement('p');
+            p.innerText = person.correo;
+            card_body.appendChild(p);
+
+        });
+    }
+</script>
+</html>
